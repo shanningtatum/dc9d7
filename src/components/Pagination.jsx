@@ -41,8 +41,8 @@ function Pagination({
           className="arrowButton left"
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
-          onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
+          onClick={(e)=>onPrevious(e)}
+          disabled={currentPage === 1 ? true : false} // change this line to disable a button.
         >
           <ChevronLeftIcon />
         </button>
