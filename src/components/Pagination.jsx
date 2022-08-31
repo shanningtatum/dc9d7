@@ -52,6 +52,7 @@ function Pagination({
       </li>
 
       {paginationRange.map((pageNumber) => {
+        console.log(currentPage);
         const key = nanoid();
 
         if (pageNumber === DOTS) {
@@ -66,7 +67,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current="false" // change this line to highlight a current page.
+            aria-current={currentPage === pageNumber ? 'page' : false} // change this line to highlight a current page.
           >
             <button
               type="button"
