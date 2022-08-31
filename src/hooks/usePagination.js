@@ -11,7 +11,7 @@ function usePagination(object) {
   let previousNumber;
 
   for (let i = 1; i <= maxPage; i++) {
-    if (i == 1 || i == maxPage || (i >= leftSibling && i <= rightSibling)) {
+    if (i == 1 || i == maxPage || (i >= leftSibling && i <= rightSibling + 1)) {
       pageRange.push(i);
     }
   }
