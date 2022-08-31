@@ -22,9 +22,7 @@ function BlogList() {
   };
   // updates current page when user clicks onNext or onPrevious
   const updatePage = (currentPage) => {
-    console.log('we are on page', currentPage);
     setCurrentPage(currentPage);
-
     setSliceAmount(selectedPageSize*currentPage);
     setSliceIndex((selectedPageSize*currentPage) - selectedPageSize);
   };

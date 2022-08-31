@@ -21,6 +21,8 @@ function Pagination({
     pageSize,
   });
 
+  const maxPage = Math.ceil(totalCount / pageSize);
+
   const onNext = () => {
     onPageChange(currentPage + 1);
   };
@@ -84,7 +86,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={false} // change this line to disable a button.
+          disabled={currentPage == maxPage ? true : false} // change this line to disable a button.
         >
           <ChevronRightIcon />
         </button>
