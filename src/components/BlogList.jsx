@@ -10,6 +10,8 @@ function BlogList() {
   // state that stores current page index
   const [currentPage, setCurrentPage] = useState(1);
 
+  
+
   // state that stores number of blogs to show per page
   const [selectedPageSize, setSelectedPageSize] = useState(15);
   const [sliceAmount, setSliceAmount] = useState(15);
@@ -17,6 +19,7 @@ function BlogList() {
   
   // updates row per page based on user selection
   const updateRowsPerPage = (userPageSize) => {
+    console.log(userPageSize);
     const setUserPage = parseInt(userPageSize);
     setSelectedPageSize(setUserPage)
   };
@@ -25,10 +28,12 @@ function BlogList() {
     setCurrentPage(currentPage);
     setSliceAmount(selectedPageSize*currentPage);
     setSliceIndex((selectedPageSize*currentPage) - selectedPageSize);
+    console.log('slice amount', sliceAmount);
   };
 
+  const currentPaginationData = blogs.posts.slice(((selectedPageSize*currentPage) - selectedPageSize) , selectedPageSize*currentPage);
+
   // need a way to store previous page selected to update slice range
-  const currentPaginationData = blogs.posts.slice(sliceIndex , sliceAmount);
 
   return (
     <div>

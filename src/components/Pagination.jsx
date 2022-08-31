@@ -21,6 +21,7 @@ function Pagination({
     pageSize,
   });
 
+  console.log(currentPage);
   const maxPage = Math.ceil(totalCount / pageSize);
 
   const onNext = () => {
