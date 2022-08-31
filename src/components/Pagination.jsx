@@ -21,6 +21,8 @@ function Pagination({
     pageSize,
   });
 
+  const maxPage = Math.ceil(totalCount / pageSize);
+
   const onNext = () => {
     onPageChange(currentPage + 1);
   };
@@ -41,14 +43,15 @@ function Pagination({
           className="arrowButton left"
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto previous page"
-          onClick={onPrevious}
-          disabled={false} // change this line to disable a button.
+          onClick={(e)=>onPrevious(e)}
+          disabled={currentPage === 1 ? true : false} // change this line to disable a button.
         >
           <ChevronLeftIcon />
         </button>
       </li>
 
       {paginationRange.map((pageNumber) => {
+        console.log(currentPage);
         const key = nanoid();
 
         if (pageNumber === DOTS) {
@@ -63,7 +66,7 @@ function Pagination({
           <li
             key={key}
             className="paginationItem"
-            aria-current="false" // change this line to highlight a current page.
+            aria-current={currentPage === pageNumber ? 'page' : false} // change this line to highlight a current page.
           >
             <button
               type="button"
@@ -84,7 +87,7 @@ function Pagination({
           // Do not remove the aria-label below, it is used for Hatchways automation.
           aria-label="Goto next page"
           onClick={onNext}
-          disabled={false} // change this line to disable a button.
+          disabled={currentPage == maxPage ? true : false} // change this line to disable a button.
         >
           <ChevronRightIcon />
         </button>

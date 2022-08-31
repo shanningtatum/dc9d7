@@ -1,14 +1,35 @@
 export const DOTS = "...";
 
-function usePagination() {
-  /*
-    Rewrite the logic here to map out the pagination to be displayed
+function usePagination(object) {
+  const { currentPage, totalCount, pageSize } = object;
+  const pageIncrement = 1;
+  const rightSibling = currentPage + pageIncrement;
+  const leftSibling = currentPage - pageIncrement;
+  const maxPage = Math.ceil(totalCount / pageSize);
+  const pageRange = [];
+  const pageWithDots = [];
+  let previousNumber;
 
-    !!!!!! ATTENTION !!!!!!
-    Please replace this comment here with a description of this hook.
-    
-  */
-  return [1, 2, 3, DOTS, 5];
+  for (let i = 1; i <= maxPage; i++) {
+    if (i == 1 || i == maxPage || (i >= leftSibling && i <= rightSibling + 1)) {
+      pageRange.push(i);
+    }
+  }
+
+  for (let i of pageRange) {
+    if (previousNumber) {
+      if (i - previousNumber !== 1) {
+        pageWithDots.push("...");
+      } else if (i - previousNumber === 0) {
+        pageWithDots.push(i + 1);
+      }
+    }
+    pageWithDots.push(i);
+    previousNumber = i;
+  }
+
+  console.log(pageWithDots);
+  return pageWithDots;
 }
 
 export default usePagination;
